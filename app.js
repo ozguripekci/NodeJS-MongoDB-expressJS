@@ -35,6 +35,34 @@ app.get('/api/v1/tours', (req, res) => {
     })
 })
 
+// get tour with id
+app.get('/api/v1/tours/:id', (req, res) => {
+    console.log(req.params);
+
+    const id = req.params.id * 1;
+
+//  if (id>tours.length) {
+    if ( !tour ) {    
+        return res
+            .status(404)
+            .json({
+                status: 'Failed',
+                message : 'Invalid ID'
+            })
+    }
+
+    const tour = tours.find(el => el.id === id)
+
+    res
+    .status(200)
+    .json({
+        status: 'Success',
+        data : {
+            tour
+        }
+    })
+})
+
 app.post('/api/v1/tours', (req, res) => {
     // console.log(req.body);
     const newId = tours[tours.length - 1].id +1;
@@ -50,6 +78,46 @@ app.post('/api/v1/tours', (req, res) => {
                 tour: newTour
             }
         })
+    })
+})
+
+
+app.patch('/api/v1/tours/:id', (req, res) => {
+    if (req.params.id * 1 > tours.length) {    
+        return res
+            .status(404)
+            .json({
+                status: 'Failed',
+                message : 'Invalid ID'
+            })
+    }
+
+    res
+    .status(200)
+    .json({
+        status : 'Success - Updated',
+        data : {
+            tour : '<Updated tour is here...>'
+        }
+    })
+})
+
+
+app.delete('/api/v1/tours/:id', (req, res) => {
+    if (req.params.id * 1 > tours.length) {    
+        return res
+            .status(404)
+            .json({
+                status: 'Failed',
+                message : 'Invalid ID'
+            })
+    }
+
+    res
+    .status(204)
+    .json({
+        status : 'Success - Deleted',
+        data : null
     })
 })
 
