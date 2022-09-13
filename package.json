@@ -1,0 +1,22 @@
+{
+  "name": "natours",
+  "version": "1.0.0",
+  "description": "Learning node.js, express, mongoDB",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ozguripekci/NodeJS-Natours-App.git"
+  },
+  "author": "Özgür Ipekci",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ozguripekci/NodeJS-Natours-App/issues"
+  },
+  "homepage": "https://github.com/ozguripekci/NodeJS-Natours-App#readme",
+  "dependencies": {
+    "express": "^4.18.1"
+  }
+}
