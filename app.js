@@ -11,7 +11,6 @@ const app = express();
 // Morgan Middleware
 app.use(morgan('dev'))
 
-
 // Express Middleware
 app.use(express.json())
 

@@ -5,6 +5,20 @@ const tours = JSON.parse(
     fs.readFileSync(`${__dirname}/../dev-data/data/tours-simple.json`)
 );
 
+// this middleware comes from tour Routes Line:6, for if part, we used only one in handlers.
+exports.checkId = (req, res, next, value) => {
+    if (req.params.id * 1 > tours.length) {    
+        return res
+            .status(404)
+            .json({
+                status: 'Failed',
+                message : 'Invalid ID'
+        })
+    }
+    next();
+}
+
+
 exports.getAllTours = (req, res) => {
     console.log(req.requestTime);
     res
@@ -24,15 +38,6 @@ exports.getTour = (req, res) => {
     const id = req.params.id * 1;
 
     const tour = tours.find(el => el.id === id)
-//  if (id>tours.length) {
-    if ( !tour ) {    
-        return res
-            .status(404)
-            .json({
-                status: 'Failed',
-                message : 'Invalid ID'
-            })
-    }
 
     res
     .status(200)
@@ -63,14 +68,6 @@ exports.createTour = (req, res) => {
 }
 
 exports.updateTour = (req, res) => {
-    if (req.params.id * 1 > tours.length) {    
-        return res
-            .status(404)
-            .json({
-                status: 'Failed',
-                message : 'Invalid ID'
-        })
-    }
     res
     .status(200)
     .json({
@@ -82,14 +79,6 @@ exports.updateTour = (req, res) => {
 }
 
 exports.deleteTour = (req, res) => {
-    if (req.params.id * 1 > tours.length) {    
-        return res
-            .status(404)
-            .json({
-                status: 'Failed',
-                message : 'Invalid ID'
-        })
-    }
     res
     .status(204)
     .json({
