@@ -18,6 +18,18 @@ exports.checkId = (req, res, next, value) => {
     next();
 }
 
+exports.checkBody = (req, res, next) => {
+    if (!req.body.price || !req.body.name) {
+        return res
+            .status(400)
+            .json({
+                status: 'Failed',
+                message : 'Invalid Request - Missing name and price'
+        })
+    }
+    next();
+}
+
 
 exports.getAllTours = (req, res) => {
     console.log(req.requestTime);
